@@ -129,4 +129,9 @@ html {
     Background: #C5965F;
     font-weight: 400;
 }
+.checkbox{
+    display: flex;
+    justify-content: end;
+
+}
 
