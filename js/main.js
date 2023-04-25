@@ -1,6 +1,9 @@
 const form = document.getElementById("novoItem");
 
-form.addEventListener("subimit", (evento)=>{
-    evento.preventDefault();
-    console.log("funcionou")
-});
+form.addEventListener("submit", (evento)=>{
+    evento.preventDefault()
+    console.log(evento.target['nome'].value);
+    console.log(evento.target['quantidade'].value);
+})
+
+
