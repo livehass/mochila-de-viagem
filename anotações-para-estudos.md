@@ -1,42 +1,66 @@
-#Anotações  para estudos:
+```scss
+//variaveis de controle do html
+const form = document.getElementById("novoItem");
+const lista = document.getElementById("lista");
 
-o padrão de um evento "subimit" é enviar os dados para pagina, usamos o preventDefault(); para remover esse evento padrao assim, podemos enviar para um console.log por exemplo.
-```scss
+//Criamos um array de items para cada objeto, cada item adicionado.
+const itens = []
+
+//funcao quando clicar no botao de enviar
 form.addEventListener("submit", (evento)=>{
-    evento.preventDefault();
-    console.log("funcionou")
+    //retira do padrao de submit que recarrega a tela. 
+    evento.preventDefault()
+    
+    //variaveis para pegar os itens do html
+    const nome = evento.target['nome'];
+    const quantidade = evento.target['quantidade'];
+
+    criaElemento(nome.value, quantidade.value);
+
+   nome.value ="";
+   quantidade.value ="";
 });
-```
-Criamos uma nova variável, para adicionar uma nova classe a li.
-Criamos também a nossa strong que recebe como parametro a quantidade de itens
-```scss
+//função que cria um novo elemento
 function criaElemento(nome, quantidade){
     
-    const novoItem = document.createElement("li"); 
-     
-    novoItem.classList.add("item");
-
-    const numeroItem = document.createElement('strong');
-    numeroItem.innerHTML = quantidade;
-}
-```
-```scss
-function criaElemento(nome, quantidade){
     //Criamos uma nova li.
     const novoItem = document.createElement('li'); 
+    
     //Adcionamos uma nova classe a li.
     novoItem.classList.add("item");
+    
     //Criamos uma anova strong.
     const numeroItem = document.createElement('strong');
+    
     //Passamos o valor do numero para a strong.
     numeroItem.innerHTML = quantidade;
-
+    
     //Passamos o valor para dentro  da strong. a strong  é o filho da li.
-    novoItem.appendChild(numeroItem); 
+    novoItem.appendChild(numeroItem);
+    
     //Passamos o parametro nome para dentro da li.
     novoItem.innerHTML += nome;
-    console.log(novoItem)
+    
+    //O filho da lista vai receber o novo item
+    lista.appendChild(novoItem);
+    
+    //criando um objeto do novo item
+    const itemAtual = {
+        "nome": nome,
+        "quantidade": quantidade,
+    }
+    //Colocamos o itemAtual, ou seja o objeto dentro do array, com o push.
+    itens.push(itemAtual);
+
+    //localStorage
+    //LocalStorage salva apenas texto, salva apenas o objesto, queremos usar uma string com os items
+    // usarmos o "JSON.stringify" "transformar em string" para salvarmos uma string e não um objeto
+    
+    //O parametro que passamos para nosso localStorage é o itens ou seja o array de itens.
+    
+    localStorage.setItem("item", JSON.stringify(itens));
 }
+
 ```
 
 comandos  de localStorage
