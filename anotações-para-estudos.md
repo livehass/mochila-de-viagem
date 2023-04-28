@@ -3,8 +3,11 @@
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
 
+
 //Criamos um array de items para cada objeto, cada item adicionado.
-const itens = []
+const itens = JSON.parse(localStorage.getItem("itens")) || []
+// ou pegamos os itens do local storage ou do array
+// e o  JSON.parse pegamos o iten que passamos para string com o stringfy e retornamos com itens
 
 //funcao quando clicar no botao de enviar
 form.addEventListener("submit", (evento)=>{
@@ -61,7 +64,7 @@ function criaElemento(nome, quantidade){
     localStorage.setItem("item", JSON.stringify(itens));
 }
 
-```
+
 
 comandos  de localStorage
 localStorage.setItem para salver o item, passando dois parametros
@@ -82,3 +85,4 @@ esvazia os items no localStorage
 localStorage
 retorna um objeto com todos os items dentro do localStorage
 
+```
