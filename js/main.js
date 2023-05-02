@@ -2,10 +2,9 @@ const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
 const itens = JSON.parse(localStorage.getItem("itens")) || []
 
-console.log(itens);
 
 itens.forEach((elemento)=>{
-    console.log(elemento)
+    console.log(elemento.nome, elemento.quantidade)
 });
 
 form.addEventListener("submit", (evento)=>{
