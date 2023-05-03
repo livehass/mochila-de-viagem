@@ -1,4 +1,4 @@
-```scss
+```js
 //variaveis de controle do html
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
