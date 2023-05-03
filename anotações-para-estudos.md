@@ -86,3 +86,7 @@ localStorage
 retorna um objeto com todos os items dentro do localStorage
 
 ```
+
+localStorage armazena dados de forma persistente, apenas aqueles considerados não sensíveis. Cookies possuem menor espaço de armazenamento 4KB, e salvam dados considerados sensíveis de forma persistente. Já sessionStorage não salva de forma persistente, armazenando dados apenas enquanto o site estiver aberto.
+
+localStorage não possui nenhuma camada de proteção de dados, não é indicado para salvar dados considerados sensíveis.
