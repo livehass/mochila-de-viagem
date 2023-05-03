@@ -1,4 +1,4 @@
-```scss
+```js
 //variaveis de controle do html
 const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
@@ -86,7 +86,10 @@ localStorage
 retorna um objeto com todos os items dentro do localStorage
 
 ```
+<<<<<<< HEAD
 
 localStorage armazena dados de forma persistente, apenas aqueles considerados não sensíveis. Cookies possuem menor espaço de armazenamento 4KB, e salvam dados considerados sensíveis de forma persistente. Já sessionStorage não salva de forma persistente, armazenando dados apenas enquanto o site estiver aberto.
 
 localStorage não possui nenhuma camada de proteção de dados, não é indicado para salvar dados considerados sensíveis.
+=======
+>>>>>>> 69ff866f154c6fc3b05dcdb9c34029491c06d49c
