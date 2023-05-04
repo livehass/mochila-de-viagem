@@ -3,7 +3,7 @@ const lista = document.getElementById("lista");
 const itens = JSON.parse(localStorage.getItem("itens")) || []  
 
 itens.forEach( (elemento) => {    
-    criaElemento(elemento);
+    criaElemento(elemento)
 } )
 
 form.addEventListener("submit", (evento) => {  
@@ -23,7 +23,7 @@ form.addEventListener("submit", (evento) => {
         itemAtual.id = existe.id
     }else{  
 
-        itemAtual.id = existe.length
+        itemAtual.id = itens.length;
         criaElemento(itemAtual)
         itens.push(itemAtual)
 
@@ -41,13 +41,13 @@ function criaElemento(item) {
     novoItem.classList.add("item");
 
     const numeroItem = document.createElement('strong');
-    numeroItem.innerHTML = item.quantidade
+    numeroItem.innerHTML = item.quantidade;
     //criamos um novo ida para nosso numero, para ser utilizado pelo if existe ou não essa li.
     numeroItem.dataset.id = item.id;
 
     novoItem.appendChild(numeroItem);
 
-    novoItem.innerHTML += item.nome
+    novoItem.innerHTML += item.nome;
 
     lista.appendChild(novoItem);
 }
