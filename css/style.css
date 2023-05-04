@@ -1,7 +1,8 @@
 html {
     background: radial-gradient(farthest-corner at right top,#21A09D, #06182D);
     height: 100%;
-    font-family: 'Roboto', cursive;
+    font-family: 'Roboto', regular;
+    
 }
 
 .conteudo {
@@ -9,6 +10,7 @@ html {
     display: flex;
     align-items: flex-start;
     gap: 2em;
+    font-weight: bold;
 }
 
 .principal {
