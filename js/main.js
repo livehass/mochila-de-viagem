@@ -4,14 +4,16 @@ const itens = JSON.parse(localStorage.getItem("itens")) || []
 
 itens.forEach( (elemento) => {    
     criaElemento(elemento)
-} )
+});
 
+//formulario enviado
 form.addEventListener("submit", (evento) => {  
     evento.preventDefault();
 
     const nome = evento.target.elements['nome'];
     const quantidade = evento.target.elements['quantidade'];
 
+    //Verificamos se os itens já existem no formulario
     const existe = itens.find(elemento => elemento.nome === nome.value)
     
     const itemAtual = {
@@ -19,10 +21,14 @@ form.addEventListener("submit", (evento) => {
     "quantidade": quantidade.value
 
     }
+    //Se o nome for encontrado na lista, com o existe, atualizamos o item
     if(existe){
+        //Ultilizamos como id atual, o id que já existe no elemento
         itemAtual.id = existe.id
+        atualizaElemento(itemAtual);
+    //Se não encontrarmos o elemento, criamos um novo elemento.     
     }else{  
-
+        //Ou usamos o tamanho do array para adicionar ao elemento atual
         itemAtual.id = itens.length;
         criaElemento(itemAtual)
         itens.push(itemAtual)
@@ -50,4 +56,7 @@ function criaElemento(item) {
     novoItem.innerHTML += item.nome;
 
     lista.appendChild(novoItem);
+}
+function atualizaElemento(item){
+    document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
 }
