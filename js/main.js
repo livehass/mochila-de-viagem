@@ -57,6 +57,7 @@ function criaElemento(item) {
 
     lista.appendChild(novoItem);
 }
+//função para buscar o data elements da strong procurar o id e atualizar a quantidade da strong.
 function atualizaElemento(item){
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
 }
