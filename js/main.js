@@ -24,13 +24,17 @@ form.addEventListener("submit", (evento) => {
     }
     //Se o nome for encontrado na lista, com o existe, atualizamos o item
     if(existe){
+        console.log(existe)
         //Ultilizamos como id atual, o id que já existe no elemento
         itemAtual.id = existe.id
         atualizaElemento(itemAtual);
+
+        itens[itens.findIndex(elemento => elemento.id === existe.id )] = itemAtual;
     //Se não encontrarmos o elemento, criamos um novo elemento.     
     }else{  
-        //Ou usamos o tamanho do array para adicionar ao elemento atual
-        itemAtual.id = itens.length;
+        /*Ou usamos o tamanho do array para adicionar ao elemento atual
+        usamos o operador condicional ternario para alternar entre parametros dependendo do id*/
+        itemAtual.id = itens[itens.length -1] ? (itens[itens.length-1]).id + 1 : 0;
         criaElemento(itemAtual)
         itens.push(itemAtual)
 
