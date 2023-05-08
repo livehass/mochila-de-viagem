@@ -2,6 +2,7 @@ const form = document.getElementById("novoItem");
 const lista = document.getElementById("lista");
 const itens = JSON.parse(localStorage.getItem("itens")) || []  
 
+
 itens.forEach( (elemento) => {    
     criaElemento(elemento)
 });
@@ -15,7 +16,7 @@ form.addEventListener("submit", (evento) => {
 
     //Verificamos se os itens já existem no formulario
     const existe = itens.find(elemento => elemento.nome === nome.value)
-    
+    console.log(existe)
     const itemAtual = {
     "nome": nome.value,
     "quantidade": quantidade.value
@@ -35,9 +36,7 @@ form.addEventListener("submit", (evento) => {
 
     }   
 
-
     localStorage.setItem("itens", JSON.stringify(itens));
-
     nome.value ="";
     quantidade.value ="";
 })
@@ -54,10 +53,38 @@ function criaElemento(item) {
     novoItem.appendChild(numeroItem);
 
     novoItem.innerHTML += item.nome;
+    
+    //Colocamos o botao de deletar dentro de cada novo item.
+    novoItem.appendChild(BotaoDeleta(item.id));
 
     lista.appendChild(novoItem);
 }
 //função para buscar o data elements da strong procurar o id e atualizar a quantidade da strong.
 function atualizaElemento(item){
     document.querySelector("[data-id='"+item.id+"']").innerHTML = item.quantidade
+}
+//função para criar um botao "x" para remover itens da lista.
+function BotaoDeleta(id) {
+    const elementoBotao = document.createElement("button");
+    elementoBotao.innerText = "x";
+    /*adicionamos um evento ao botão, pois elementos em js não tem evento padrao.
+    ultilizamos a função comum e não a arrow function pois, ultilizamos o this.*/
+    elementoBotao.addEventListener("click", function(){
+        /*como o botao é filho da nossa li, somente o this, deletaria apenas o botao 
+        por isso o uso do parentNode, para pegarmos os filhos da li.*/
+        deletaElemento(this.parentNode, id);
+    })
+    
+    return elementoBotao;
+}
+//passamos os parametros de tag e id quando chamamos o item, em novoItem.appendChild(BotaoDeleta(item.id));
+function deletaElemento(tag, id) {
+    //remove elemento
+    tag.remove()
+    /*remover o item do array
+    passamos esse id para o: botao deleta, para o deleta elemento, para utilizarmos no splice*/
+    itens.splice(itens.findIndex(elemento => elemento.id === id), 1);
+
+    //para reescrevermos por cima do localStorage e remover os itens permanentemente.
+    localStorage.setItem("itens", JSON.stringify(itens));
 }
